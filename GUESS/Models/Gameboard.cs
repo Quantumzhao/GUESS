@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace GUESS.Models
@@ -16,6 +18,7 @@ namespace GUESS.Models
 		public void StartNewGame()
 		{
 			Gameboard = new Gameboard();
+			Next();
 		}
 
 		public void SubmitCurrent()
@@ -65,7 +68,7 @@ namespace GUESS.Models
 
 		public void Next()
 		{
-			if (Gameboard.Current.Correctness.All(e => e ?? false))
+			if (Gameboard.Current?.Correctness.All(e => e ?? false) ?? false)
 			{
 				GameOver?.Invoke(true);
 			}
@@ -93,8 +96,8 @@ namespace GUESS.Models
 		}
 
 		private static Random _Random = new Random();
-		public List<Trial> Trials { get; } = new List<Trial> { new Trial() };
-		public Trial Current => Trials[^1];
+		public ObservableCollection<Trial> Trials { get; } = new ObservableCollection<Trial>();
+		public Trial Current => Trials.Count == 0 ? null : Trials[^1];
 		public Colors[] Answer { get; } = new Colors[GameManager.PEG_COUNTS];
 	}
 

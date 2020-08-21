@@ -8,18 +8,8 @@
              Height="800"
              MinHeight="800"
              x:Class="GUESS.Views.GameboardView">
-  
-  <Grid RowDefinitions="120, Auto">
-    <DockPanel Grid.Row="0">
-      <TextBlock Text="Guess"
-           FontFamily="Pier Sans"
-           FontSize="60"
-           FontWeight="Bold"
-           Margin="32, 16, 0, 0"
-           Grid.Row="0">
-      </TextBlock>
-    </DockPanel>
-    <ScrollViewer Grid.Row="1">
+
+  <!--
       <Grid Margin="25, 0, 25, 0" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
         <Grid.DataTemplates>
           <DataTemplate DataType="{x:Type local:Trial}">
@@ -40,8 +30,18 @@
           <Rectangle Width="10" Height="10" Fill="Black"/>
         </LayoutTransformControl>
 
-      </Grid>
-    </ScrollViewer>
-  </Grid>
-
+      </Grid>-->
+  <ItemsControl Width="450" MinHeight="680">
+    <ItemsControl.Styles>
+      <Style Selector="ItemsControl > ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
+      </Style>
+    </ItemsControl.Styles>
+    <ItemsControl.ItemsPanel>
+      <ItemsPanelTemplate>
+        <Canvas/>
+      </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+  </ItemsControl>
 </UserControl>
