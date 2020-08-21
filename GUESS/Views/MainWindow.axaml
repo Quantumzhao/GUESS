@@ -23,14 +23,6 @@
            Margin="32, 16, 0, 0"
            Grid.Row="0">
       </TextBlock>
-      <Ellipse Width="40" Height="40">
-        <Ellipse.Fill>
-          <SolidColorBrush>
-            <SolidColorBrush.Color>
-            </SolidColorBrush.Color>
-          </SolidColorBrush>
-        </Ellipse.Fill>
-      </Ellipse>
     </DockPanel>
     <ScrollViewer Grid.Row="1">
       <views:GameboardView/>
