@@ -4,29 +4,109 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:GUESS.Views"
+        xmlns:converters="clr-namespace:GUESS.Converters;assembly=GUESS"
         mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
         x:Class="GUESS.Views.MainWindow"
+        MinWidth="450" MinHeight="450"
+        Width="450" Height="800"
         Icon="/Assets/avalonia-logo.ico"
         Title="GUESS"
         HasSystemDecorations="True">
-
+  
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-  <Grid RowDefinitions="120, Auto">
-    <DockPanel Grid.Row="0">
-      <TextBlock Text="Guess"
-           FontFamily="Pier Sans"
-           FontSize="60"
-           FontWeight="Bold"
-           Margin="32, 16, 0, 0"
-           Grid.Row="0">
+  <Grid RowDefinitions="120 * 63">
+    <Image Source="/Assets/header.png" 
+           Height="800"
+           Grid.Row="0" 
+           VerticalAlignment="Top"
+           HorizontalAlignment="Stretch"
+           Stretch="Fill"/>
+    <DockPanel Grid.Row="0" VerticalAlignment="Top">
+      <TextBlock 
+        Text="Guess"
+        FontFamily="Pier Sans"
+        FontSize="60"
+        FontWeight="Bold"
+        Margin="24 32 0 0"
+        Grid.Row="0"
+        VerticalAlignment="Top"
+        DockPanel.Dock="Left">
       </TextBlock>
+      <Canvas
+        DockPanel.Dock="Right" 
+        VerticalAlignment="Top" 
+        HorizontalAlignment="Right" 
+        Width="70" 
+        Height="63"
+        Margin="0 34.56 34 0">
+        <Canvas.Styles>
+          <Style Selector="Ellipse">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+          </Style>
+        </Canvas.Styles>
+        <Ellipse Classes="Red" Canvas.Left="13" Canvas.Top="0"/>
+        <Ellipse Classes="Yellow" Canvas.Left="37" Canvas.Top="0"/>
+        <Ellipse Classes="Blue" Canvas.Left="50" Canvas.Top="22"/>
+        <Ellipse Classes="Green" Canvas.Left="38" Canvas.Top="43"/>
+        <Ellipse Classes="Orange" Canvas.Left="13" Canvas.Top="43"/>
+        <Ellipse Classes="Purple" Canvas.Left="0" Canvas.Top="22"/>
+        
+      </Canvas>
     </DockPanel>
-    <ScrollViewer Grid.Row="1">
+    <ScrollViewer Grid.Row="1" MinHeight="617" VerticalAlignment="Stretch">
       <views:GameboardView/>
     </ScrollViewer>
+    <Image 
+      Source="/Assets/info_bar.png"
+      Height="169"
+      Grid.Row="2" 
+      VerticalAlignment="Bottom"
+      HorizontalAlignment="Stretch"
+      Stretch="Fill"/>
+    <DockPanel Height="63" Grid.Row="2" VerticalAlignment="Bottom">
+      <Button
+        DockPanel.Dock="Left"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Margin="21, 5, 0, 0"
+        Background="Transparent"
+        BorderBrush="Transparent"
+        Command="{Binding NewGame}">
+        <Path Data="M6.2,15V8.8H0V6.2h6.2V0h2.6v6.2H15v2.6H8.8V15H6.2z">
+          <Path.Fill>
+            <SolidColorBrush Color="#353535"/>
+          </Path.Fill>
+        </Path>
+      </Button>
+      <TextBlock
+        Text="{Binding TrialsRemainingCount}"
+        DockPanel.Dock="Right"
+        TextAlignment="Right"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        Margin="0 10 21 0"
+        FontFamily="Pier Sans"
+        FontSize="25"
+        FontWeight="Regular"
+        Foreground="{Binding TrialsRemainingCount, Converter={x:Static 
+          converters:RemainingTrialsToBrushConverter.Singleton}}">
+      </TextBlock>
+      <TextBlock
+        Margin="0 5 0 0"
+        Text="Trials Remaining: "
+        DockPanel.Dock="Right"
+        TextAlignment="Right"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        FontFamily="Pier Sans"
+        FontSize="25"
+        FontWeight="Regular"
+        Foreground="#353535">
+      </TextBlock>
+    </DockPanel>
   </Grid>
-
 </Window>

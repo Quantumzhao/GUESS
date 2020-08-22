@@ -4,9 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              xmlns:local="clr-namespace:GUESS.Models"
-             Width="450"
-             Height="800"
-             MinHeight="800"
              x:Class="GUESS.Views.GameboardView">
 
   <!--
@@ -31,7 +28,7 @@
         </LayoutTransformControl>
 
       </Grid>-->
-  <ItemsControl Width="450" MinHeight="680">
+  <ItemsControl Width="450" HorizontalAlignment="Stretch">
     <ItemsControl.Styles>
       <Style Selector="ItemsControl > ContentPresenter">
         <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>

@@ -11,9 +11,12 @@ namespace GUESS.Models
 		public const int MAX_TRIALS = 10;
 		public const int PEG_COUNTS = 4;
 
-		public Gameboard Gameboard { get; private set; }
+		public GameManager() => StartNewGame();
 
+		public readonly static GameManager Singleton = new GameManager();
 		public event Action<bool> GameOver;
+
+		public Gameboard Gameboard { get; private set; }
 
 		public void StartNewGame()
 		{

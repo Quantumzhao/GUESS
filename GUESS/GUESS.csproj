@@ -8,15 +8,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\ball.png" />
+    <None Remove="Assets\header.png" />
     <None Remove="Assets\highlight.png" />
+    <None Remove="Assets\info_bar.png" />
     <None Remove="Assets\peg.png" />
+    <None Remove="Assets\submit.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.11" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.11" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.11" />
+    <PackageReference Include="Avalonia" Version="0.10.0-preview3" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview3" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.12" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Folder Include="Fonts\" />
   </ItemGroup>
 </Project>
