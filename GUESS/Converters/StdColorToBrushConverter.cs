@@ -33,7 +33,7 @@ namespace GUESS.Converters
 					break;
 
 				case Colors.Blue:
-					rgbColor = Color.FromUInt32(0x5959ce);
+					rgbColor = Color.FromUInt32(0xff5959ce);
 					break;
 
 				case Colors.Green:

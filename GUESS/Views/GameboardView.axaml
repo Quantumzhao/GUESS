@@ -2,43 +2,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:GUESS.Views"
+             x:Class="GUESS.Views.GameboardView"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
-             xmlns:local="clr-namespace:GUESS.Models"
-             x:Class="GUESS.Views.GameboardView">
+             xmlns:local="clr-namespace:GUESS.Models">
 
-  <!--
-      <Grid Margin="25, 0, 25, 0" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
-        <Grid.DataTemplates>
-          <DataTemplate DataType="{x:Type local:Trial}">
-            <StackPanel Orientation="Horizontal" ZIndex="1">
-              <Ellipse Width="60" Height="60" Fill="Gray"/>
-              <Ellipse Width="60" Height="60" Fill="Gray" Margin="15, 0, 0, 0"/>
-              <Ellipse Width="60" Height="60" Fill="Gray" Margin="15, 0, 0, 0"/>
-              <Ellipse Width="60" Height="60" Fill="Gray" Margin="15, 0, 0, 0"/>
-            </StackPanel>
-          </DataTemplate>
-        </Grid.DataTemplates>
-        <Ellipse Grid.Row="0" Width="60" Height="60" Fill="Gray" ZIndex="1"/>
-        <Border Grid.Row="0" CornerRadius="47" Height="94" Width="400" Background="AliceBlue" ZIndex="0"/>
-        <LayoutTransformControl Grid.Row="1" Width="100" Height="100">
-          <LayoutTransformControl.LayoutTransform>
-            <RotateTransform Angle="45"/>
-          </LayoutTransformControl.LayoutTransform>
-          <Rectangle Width="10" Height="10" Fill="Black"/>
-        </LayoutTransformControl>
+  <ScrollViewer>
+    <ItemsControl
+      Width="450"
+      Items="{Binding TrialEntryViewModels}">
+      <ItemsControl.Styles>
+        <Style Selector="ItemsControl > ContentPresenter">
+          <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
+          <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
+        </Style>
+      </ItemsControl.Styles>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas Height="{Binding GameboardHeight}" VerticalAlignment="Top">
+            <Border
+              Width="400"
+              Height="92"
+              CornerRadius="46"
+              BoxShadow="0 3 40 0 #33000000"
+              Canvas.Left="{Binding HighlightPosition.X}"
+              Canvas.Top="{Binding HighlightPosition.Y}"/>
+          </Canvas>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
 
-      </Grid>-->
-  <ItemsControl Width="450" HorizontalAlignment="Stretch">
-    <ItemsControl.Styles>
-      <Style Selector="ItemsControl > ContentPresenter">
-        <Setter Property="Canvas.Left" Value="{Binding Position.X}"/>
-        <Setter Property="Canvas.Top" Value="{Binding Position.Y}"/>
-      </Style>
-    </ItemsControl.Styles>
-    <ItemsControl.ItemsPanel>
-      <ItemsPanelTemplate>
-        <Canvas/>
-      </ItemsPanelTemplate>
-    </ItemsControl.ItemsPanel>
-  </ItemsControl>
+      <ItemsControl.DataTemplates>
+        <DataTemplate>
+          <views:TrialEntryView DataContext="{Binding}"/>
+        </DataTemplate>
+      </ItemsControl.DataTemplates>
+    </ItemsControl>
+  </ScrollViewer>
 </UserControl>

@@ -5,7 +5,7 @@
              xmlns:converters="clr-namespace:GUESS.Converters;assembly=GUESS"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GUESS.Views.TrialEntryView">
-  <Grid ColumnDefinitions="*, *, *, *, Auto" Margin="42 48 42 0">
+  <Grid ColumnDefinitions="*, *, *, *, Auto">
     <Grid.Styles>
       <Style Selector="Ellipse">
         <Setter Property="Margin" Value="0, 0, 15, 0"/>
@@ -17,28 +17,33 @@
           converters:StdColorToBrushConverter.Singleton}}"/>
     <Ellipse Grid.Column="1" Fill="{Binding Peg2, Converter={x:Static 
           converters:StdColorToBrushConverter.Singleton}}"/>
-    <Ellipse Grid.Column="1" Fill="{Binding Peg3, Converter={x:Static 
+    <Ellipse Grid.Column="2" Fill="{Binding Peg3, Converter={x:Static 
           converters:StdColorToBrushConverter.Singleton}}"/>
-    <Ellipse Grid.Column="1" Fill="{Binding Peg4, Converter={x:Static 
+    <Ellipse Grid.Column="3" Fill="{Binding Peg4, Converter={x:Static 
           converters:StdColorToBrushConverter.Singleton}}"/>
-    <Canvas Width="55.4" Height="55.4" Margin="9 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center">
+    <Canvas 
+      Width="55.4" 
+      Height="55.4" 
+      Margin="9 0 0 0" 
+      HorizontalAlignment="Right" 
+      VerticalAlignment="Center"
+      Grid.Column="4">
       <Canvas.Styles>
-        <Style Selector="Ellipse">
+        <Style Selector="Border">
           <Setter Property="Width" Value="20"/>
           <Setter Property="Height" Value="20"/>
+          <Setter Property="CornerRadius" Value="10"/>
+          <Setter Property="Background" Value="#fff4f4f4"/>
         </Style>
       </Canvas.Styles>
-      <Ellipse Canvas.Left="17.7" Canvas.Top="0" Fill="{Binding Trials.Correctness[0], Converter={x:Static 
-          converters:NullableBoolToBrushConverter.Singleton}}"/>
-      <Ellipse Canvas.Left="0" Canvas.Top="17.7" Fill="{Binding Trials.Correctness[1], Converter={x:Static 
-          converters:NullableBoolToBrushConverter.Singleton}}"/>
-      <Ellipse Canvas.Left="35.4" Canvas.Top="17.7" Fill="{Binding Trials.Correctness[2], Converter={x:Static 
-          converters:NullableBoolToBrushConverter.Singleton}}"/>
-      <Ellipse Canvas.Left="17.7" Canvas.Top="35.4" Fill="{Binding Trials.Correctness[3], Converter={x:Static
-      converters:NullableBoolToBrushConverter.Singleton}}"/>
+      <!--Binding Trials.Correctness[0], Converter={x:Static 
+          converters:NullableBoolToBrushConverter.Singleton}-->
+      <Border Canvas.Left="17.7" Canvas.Top="0"/>
+      <Border Canvas.Left="0" Canvas.Top="17.7"/>
+      <Border Canvas.Left="35.4" Canvas.Top="17.7"/>
+      <Border Canvas.Left="17.7" Canvas.Top="35.4"/>
       <Button 
-        Canvas.Top="10" 
-        Canvas.Left="10" 
+        Padding="0"
         BorderBrush="Transparent" 
         Background="Transparent"
         Command="{Binding SubmitButtonClicked}"

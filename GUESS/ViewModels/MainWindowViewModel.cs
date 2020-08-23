@@ -16,21 +16,14 @@ namespace GUESS.ViewModels
 	{
 		public MainWindowViewModel()
 		{
-			NewGame = ReactiveCommand.Create(() =>
-			{
-				GameManager.StartNewGame();
-				return GameManager.Gameboard;
-			});
+			NewGame();
 
 			GameManager.Gameboard.Trials.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) 
 				=> this.RaisePropertyChanged(nameof(TrialsRemainingCount));
-			
-			NewGame.Subscribe(gb => CurrentGameViewModel = new GameboardViewModel(gb));
 		}
 
 		public GameManager GameManager => GameManager.Singleton;
 		public int TrialsRemainingCount => GameManager.MAX_TRIALS - GameManager.Gameboard.Trials.Count;
-		public ReactiveCommand<Unit, Gameboard> NewGame { get; }
 
 		private GameboardViewModel _CurrentGameboardViewModel;
 		public GameboardViewModel CurrentGameViewModel 
@@ -40,5 +33,11 @@ namespace GUESS.ViewModels
 		}
 
 		public void Next() => GameManager.Next();
+
+		public void NewGame()
+		{
+			GameManager.StartNewGame();
+			CurrentGameViewModel = new GameboardViewModel(GameManager.Gameboard);
+		}
 	}
 }

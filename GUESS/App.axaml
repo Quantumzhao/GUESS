@@ -12,42 +12,42 @@
       <Style Selector="Ellipse.Red">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#e6317f"/>
+            <SolidColorBrush Color="#ffe6317f"/>
           </Setter.Value>
         </Setter>
       </Style>
       <Style Selector="Ellipse.Yellow">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#ffdb27"/>
+            <SolidColorBrush Color="#ffffdb27"/>
           </Setter.Value>
         </Setter>
       </Style>
       <Style Selector="Ellipse.Blue">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#5959ce"/>
+            <SolidColorBrush Color="#ff5959ce"/>
           </Setter.Value>
         </Setter>
       </Style>
       <Style Selector="Ellipse.Green">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#53d348"/>
+            <SolidColorBrush Color="#ff53d348"/>
           </Setter.Value>
         </Setter>
       </Style>
       <Style Selector="Ellipse.Orange">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#ef9029"/>
+            <SolidColorBrush Color="#ffef9029"/>
           </Setter.Value>
         </Setter>
       </Style>
       <Style Selector="Ellipse.Purple">
         <Setter Property="Fill">
           <Setter.Value>
-            <SolidColorBrush Color="#7831aa"/>
+            <SolidColorBrush Color="#ff7831aa"/>
           </Setter.Value>
         </Setter>
       </Style>

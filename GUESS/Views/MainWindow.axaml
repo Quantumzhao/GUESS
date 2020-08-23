@@ -17,57 +17,60 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-  <Grid RowDefinitions="120 * 63">
-    <Image Source="/Assets/header.png" 
-           Height="800"
-           Grid.Row="0" 
-           VerticalAlignment="Top"
-           HorizontalAlignment="Stretch"
-           Stretch="Fill"/>
-    <DockPanel Grid.Row="0" VerticalAlignment="Top">
-      <TextBlock 
-        Text="Guess"
-        FontFamily="Pier Sans"
-        FontSize="60"
-        FontWeight="Bold"
-        Margin="24 32 0 0"
-        Grid.Row="0"
-        VerticalAlignment="Top"
-        DockPanel.Dock="Left">
-      </TextBlock>
-      <Canvas
-        DockPanel.Dock="Right" 
-        VerticalAlignment="Top" 
-        HorizontalAlignment="Right" 
-        Width="70" 
-        Height="63"
-        Margin="0 34.56 34 0">
-        <Canvas.Styles>
-          <Style Selector="Ellipse">
-            <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
-          </Style>
-        </Canvas.Styles>
-        <Ellipse Classes="Red" Canvas.Left="13" Canvas.Top="0"/>
-        <Ellipse Classes="Yellow" Canvas.Left="37" Canvas.Top="0"/>
-        <Ellipse Classes="Blue" Canvas.Left="50" Canvas.Top="22"/>
-        <Ellipse Classes="Green" Canvas.Left="38" Canvas.Top="43"/>
-        <Ellipse Classes="Orange" Canvas.Left="13" Canvas.Top="43"/>
-        <Ellipse Classes="Purple" Canvas.Left="0" Canvas.Top="22"/>
-        
-      </Canvas>
-    </DockPanel>
-    <ScrollViewer Grid.Row="1" MinHeight="617" VerticalAlignment="Stretch">
-      <views:GameboardView/>
-    </ScrollViewer>
+  <Grid RowDefinitions="* 63">
+    <Border Grid.Row="0" VerticalAlignment="Stretch" BoxShadow="0 5 30 0 #33000000">
+      <Grid RowDefinitions="120 *" VerticalAlignment="Stretch">
+        <Border Grid.Row="0" Height="120" VerticalAlignment="Stretch" BoxShadow="0 5 30 0 #33000000" ZIndex="1">
+          <DockPanel>
+            <TextBlock
+              Text="Guess"
+              FontFamily="Pier Sans"
+              FontSize="60"
+              FontWeight="Bold"
+              Margin="24 32 0 0"
+              Grid.Row="0"
+              VerticalAlignment="Top"
+              DockPanel.Dock="Left">
+            </TextBlock>
+            <Canvas
+              DockPanel.Dock="Right"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Right"
+              Width="70"
+              Height="63"
+              Margin="0 34.56 34 0">
+              <Canvas.Styles>
+                <Style Selector="Ellipse">
+                  <Setter Property="Width" Value="20"/>
+                  <Setter Property="Height" Value="20"/>
+                </Style>
+              </Canvas.Styles>
+              <Ellipse Classes="Red" Canvas.Left="13" Canvas.Top="0"/>
+              <Ellipse Classes="Yellow" Canvas.Left="37" Canvas.Top="0"/>
+              <Ellipse Classes="Blue" Canvas.Left="50" Canvas.Top="22"/>
+              <Ellipse Classes="Green" Canvas.Left="38" Canvas.Top="43"/>
+              <Ellipse Classes="Orange" Canvas.Left="13" Canvas.Top="43"/>
+              <Ellipse Classes="Purple" Canvas.Left="0" Canvas.Top="22"/>
+            </Canvas>
+          </DockPanel>
+        </Border>
+        <views:GameboardView
+          DataContext="{Binding CurrentGameViewModel}"
+          Grid.Row="1"
+          HorizontalContentAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          VerticalContentAlignment="Stretch"/>
+      </Grid>
+    </Border>
+    <!--
     <Image 
       Source="/Assets/info_bar.png"
       Height="169"
       Grid.Row="2" 
       VerticalAlignment="Bottom"
       HorizontalAlignment="Stretch"
-      Stretch="Fill"/>
-    <DockPanel Height="63" Grid.Row="2" VerticalAlignment="Bottom">
+      Stretch="Fill"/>-->
+    <DockPanel Height="63" Grid.Row="1" VerticalAlignment="Bottom">
       <Button
         DockPanel.Dock="Left"
         HorizontalAlignment="Center"

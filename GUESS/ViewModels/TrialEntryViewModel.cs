@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using GUESS.Models;
 using ReactiveUI;
@@ -14,11 +15,12 @@ namespace GUESS.ViewModels
 		public TrialEntryViewModel(Trial trial, int index)
 		{
 			Trial = trial;
+			Position = new Point(42, 48 + (12 + 94) * index);
 		}
 
+		public Point Position { get; }
 		public Trial Trial { get; }
 		public List<bool?> Correctness => Trial.Correctness;
-		public Point Position { get; }
 
 		private bool _DoesShowSubmitButton = true;
 		public bool DoesShowSubmitButton
@@ -66,8 +68,14 @@ namespace GUESS.ViewModels
 
 		public void SubmitButtonClicked()
 		{
-			GameManager.Singleton.SubmitCurrent();
+			// test
+			Peg1 = Colors.Red;
+			Peg2 = Colors.Yellow;
+			Peg3 = Colors.Blue;
+			Peg4 = Colors.Green;
 			DoesShowSubmitButton = false;
+			GameManager.Singleton.SubmitCurrent();
+			GameManager.Singleton.Next();
 		}
 	}
 }
