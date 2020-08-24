@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUESS", "GUESS\GUESS.csproj", "{81C377B8-DA44-42C3-B065-845222A684CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{8F41E8FE-F926-4F64-A0BF-5AFB0CF88B3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI", "CLI\CLI.csproj", "{8F41E8FE-F926-4F64-A0BF-5AFB0CF88B3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ripple", "Ripple\Ripple.csproj", "{0EFD773F-4BAC-44CE-B5AE-3F086D8E1EB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8F41E8FE-F926-4F64-A0BF-5AFB0CF88B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F41E8FE-F926-4F64-A0BF-5AFB0CF88B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F41E8FE-F926-4F64-A0BF-5AFB0CF88B3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EFD773F-4BAC-44CE-B5AE-3F086D8E1EB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EFD773F-4BAC-44CE-B5AE-3F086D8E1EB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EFD773F-4BAC-44CE-B5AE-3F086D8E1EB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EFD773F-4BAC-44CE-B5AE-3F086D8E1EB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
