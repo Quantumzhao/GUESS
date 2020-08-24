@@ -12,6 +12,8 @@ using GUESS.Misc;
 using Avalonia.Input;
 using System.Reactive.Linq;
 using GUESS.Views;
+using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 
 namespace GUESS.ViewModels
 {
@@ -63,6 +65,7 @@ namespace GUESS.ViewModels
 
 			CurrentGameViewModel = new GameboardViewModel(GameManager.Gameboard);
 			this.RaisePropertyChanged(nameof(TrialsRemainingCount));
+			this.RaisePropertyChanged(nameof(Answer));
 		}
 
 		public void GameOverWindowButtonClicked()

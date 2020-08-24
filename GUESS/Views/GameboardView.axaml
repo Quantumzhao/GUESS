@@ -6,6 +6,15 @@
              x:Class="GUESS.Views.GameboardView"
              mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
              xmlns:local="clr-namespace:GUESS.Models">
+  <UserControl.Styles>
+    <Style Selector="Border.Highlight">
+      <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Canvas.Top" Duration="0:0:0.15"/>
+        </Transitions>
+      </Setter>
+    </Style>
+  </UserControl.Styles>
 
   <ScrollViewer>
     <ItemsControl
@@ -21,19 +30,22 @@
         <ItemsPanelTemplate>
           <Canvas Height="{Binding GameboardHeight}" VerticalAlignment="Top">
             <Border
+              Background="White"
+              Classes="Highlight"
               Width="400"
               Height="92"
               CornerRadius="46"
               BoxShadow="0 3 40 0 #33000000"
               Canvas.Left="{Binding HighlightPosition.X}"
-              Canvas.Top="{Binding HighlightPosition.Y}"/>
+              Canvas.Top="{Binding HighlightPosition.Y}"
+              ZIndex="-1"/>
           </Canvas>
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
 
       <ItemsControl.DataTemplates>
         <DataTemplate>
-          <views:TrialEntryView DataContext="{Binding}"/>
+          <views:TrialEntryView Classes="Trial" DataContext="{Binding}" ZIndex="1"/>
         </DataTemplate>
       </ItemsControl.DataTemplates>
     </ItemsControl>

@@ -88,12 +88,10 @@
         </ripple:RippleEffect.OpacityMask>
         <ripple:RippleEffect.Styles>
           <Style Selector="Border:pointerover">
-            <Setter Property="Background" Value="#99f4f4f4"/>
+            <Setter Property="Background" Value="#33f4f4f4"/>
           </Style>
         </ripple:RippleEffect.Styles>
-        <Border
-          Margin="0 0 0 0"
-          Background="#01f4f4f4">
+        <Border>
           <Image Source="/Assets/submit.png" Width="53" Height="53"/>
         </Border>
       </ripple:RippleEffect>

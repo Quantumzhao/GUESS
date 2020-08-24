@@ -27,35 +27,17 @@ namespace GUESS.Converters
 			_ => throw new NotSupportedException(),
 		});
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) 
+			=> ((value as SolidColorBrush).Color.ToUint32()) switch
 		{
-			var rgbColor = (value as SolidColorBrush).Color;
-			switch (rgbColor.ToUint32())
-			{
-				case 0xfff4f4f4:
-					return Colors.None;
-
-				case 0xffe6317f:
-					return Colors.Red;
-
-				case 0xffffdb27:
-					return Colors.Yellow;
-
-				case 0xff5959ce:
-					return Colors.Blue;
-
-				case 0xff53d348:
-					return Colors.Green;
-
-				case 0xffef9029:
-					return Colors.Orange;
-
-				case 0xff7831aa:
-					return Colors.Purple;
-
-				default:
-					throw new NotSupportedException();
-			}
-		}
+			0xfff4f4f4 => Colors.None,
+			0xffe6317f => Colors.Red,
+			0xffffdb27 => Colors.Yellow,
+			0xff5959ce => Colors.Blue,
+			0xff53d348 => Colors.Green,
+			0xffef9029 => Colors.Orange,
+			0xff7831aa => Colors.Purple,
+			_ => throw new NotSupportedException(),
+		};
 	}
 }

@@ -92,8 +92,9 @@ namespace GUESS.Models
 			{
 				Answer[i] = (Colors)_Random.Next(1, 6);
 			}
-
-			Answer = new Colors[] { Colors.Green, Colors.Red, Colors.Blue, Colors.Green };
+#if DEBUG
+			//Answer = new Colors[] { Colors.Green, Colors.Red, Colors.Blue, Colors.Green };
+#endif
 		}
 
 		private static Random _Random = new Random();
