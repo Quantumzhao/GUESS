@@ -18,7 +18,6 @@ namespace CLI
 			_ColorMap.Add('g', Colors.Green);
 			_ColorMap.Add('o', Colors.Orange);
 			_ColorMap.Add('p', Colors.Purple);
-			Func<bool?, char> boolMap = b => b == null ? 'N' : ((b ?? false) ? 'T' : 'F');
 			gamemanager.GameOver += b =>
 			{
 				if (b)
@@ -41,7 +40,7 @@ namespace CLI
 					gamemanager.Gameboard.Current.Balls[i] = _ColorMap[entry[i]];
 				}
 				gamemanager.SubmitCurrent();
-				Console.WriteLine($"{entry}: {new Func<IEnumerable<char>, string>(c => new string(c.ToArray(), 0, c.Count()))(gamemanager.Gameboard.Current.Correctness.Select(b => boolMap(b)))}");
+				Console.WriteLine($"{entry}: {new Func<IEnumerable<char>, string>(c => new string(c.ToArray(), 0, c.Count()))(gamemanager.Gameboard.Current.Correctness.Select(s => s.ToString()[0]))}");
 				gamemanager.Next();
 			}
 		}

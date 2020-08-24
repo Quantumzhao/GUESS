@@ -2,54 +2,101 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ripple="clr-namespace:Ripple;assembly=Ripple"
              xmlns:converters="clr-namespace:GUESS.Converters;assembly=GUESS"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GUESS.Views.TrialEntryView">
-  <Grid ColumnDefinitions="*, *, *, *, Auto">
+  <Grid ColumnDefinitions="*, *, *, *, Auto" Margin="17 17 0 0">
     <Grid.Styles>
-      <Style Selector="Ellipse">
-        <Setter Property="Margin" Value="0, 0, 15, 0"/>
+      <Style Selector="Border.Balls">
+        <Setter Property="Margin" Value="0, 0, 14, 17"/>
         <Setter Property="Width" Value="60"/>
         <Setter Property="Height" Value="60"/>
+        <Setter Property="CornerRadius" Value="30"/>
+      </Style>
+      <Style Selector="Border.Filled">
+        <Setter Property="BoxShadow" Value="3 3 28 0 #66494949"/>
+      </Style>
+      <Style Selector="Border.Empty">
+        <Setter Property="BoxShadow" Value="inset 0 0 20 0 #22545454"/>
       </Style>
     </Grid.Styles>
-    <Ellipse Grid.Column="0" Fill="{Binding Peg1, Converter={x:Static 
-          converters:StdColorToBrushConverter.Singleton}}"/>
-    <Ellipse Grid.Column="1" Fill="{Binding Peg2, Converter={x:Static 
-          converters:StdColorToBrushConverter.Singleton}}"/>
-    <Ellipse Grid.Column="2" Fill="{Binding Peg3, Converter={x:Static 
-          converters:StdColorToBrushConverter.Singleton}}"/>
-    <Ellipse Grid.Column="3" Fill="{Binding Peg4, Converter={x:Static 
-          converters:StdColorToBrushConverter.Singleton}}"/>
+    <Rectangle Width="100" Height="100" Fill="Aqua" IsVisible="False">
+      <Rectangle.Fill>
+        <RadialGradientBrush>
+          <RadialGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="Black" />
+            <GradientStop Offset="0.7" Color="Black"/>
+            <GradientStop Offset="0.7" Color="Transparent" />
+          </RadialGradientBrush.GradientStops>
+        </RadialGradientBrush>
+      </Rectangle.Fill>
+    </Rectangle>
+
+    <Border Name="Peg0" Classes="Empty Balls" DragDrop.AllowDrop="True" Grid.Column="0" Background="{Binding Peg0,
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}, Mode=TwoWay}"/>
+    <Border Name="Peg1" Classes="Empty Balls" DragDrop.AllowDrop="True" Grid.Column="1" Background="{Binding Peg1,
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}, Mode=TwoWay}"/>
+    <Border Name="Peg2" Classes="Empty Balls" DragDrop.AllowDrop="True" Grid.Column="2" Background="{Binding Peg2,
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}, Mode=TwoWay}"/>
+    <Border Name="Peg3" Classes="Empty Balls" DragDrop.AllowDrop="True" Grid.Column="3" Background="{Binding Peg3,
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}, Mode=TwoWay}"/>
     <Canvas 
-      Width="55.4" 
-      Height="55.4" 
-      Margin="9 0 0 0" 
+      Width="60" 
+      Height="60" 
+      Margin="9 4 0 0" 
       HorizontalAlignment="Right" 
-      VerticalAlignment="Center"
+      VerticalAlignment="Top"
       Grid.Column="4">
       <Canvas.Styles>
-        <Style Selector="Border">
+        <Style Selector="Border.Indicator">
           <Setter Property="Width" Value="20"/>
           <Setter Property="Height" Value="20"/>
           <Setter Property="CornerRadius" Value="10"/>
           <Setter Property="Background" Value="#fff4f4f4"/>
         </Style>
+        <Style Selector="Border.True">
+          <Setter Property="BoxShadow" Value="inset 0 0 8 0 #66545454"/>
+        </Style>
+        <Style Selector="Border.False">
+          <Setter Property="BoxShadow" Value="1 1 8 0 #66545454"/>
+        </Style>
       </Canvas.Styles>
-      <!--Binding Trials.Correctness[0], Converter={x:Static 
-          converters:NullableBoolToBrushConverter.Singleton}-->
-      <Border Canvas.Left="17.7" Canvas.Top="0"/>
-      <Border Canvas.Left="0" Canvas.Top="17.7"/>
-      <Border Canvas.Left="35.4" Canvas.Top="17.7"/>
-      <Border Canvas.Left="17.7" Canvas.Top="35.4"/>
-      <Button 
+      <Border Classes="Indicator" Name="Indicator0" Canvas.Left="17.7" Canvas.Top="0" Background="{Binding Indicator0, 
+          Converter={x:Static converters:StatusToBrushConverter.Singleton}}"/>
+      <Border Classes="Indicator" Name="Indicator1" Canvas.Left="0" Canvas.Top="17.7" Background="{Binding Indicator1, 
+          Converter={x:Static converters:StatusToBrushConverter.Singleton}}"/>
+      <Border Classes="Indicator" Name="Indicator2" Canvas.Left="35.4" Canvas.Top="17.7" Background="{Binding Indicator2, 
+          Converter={x:Static converters:StatusToBrushConverter.Singleton}}"/>
+      <Border Classes="Indicator" Name="Indicator3" Canvas.Left="17.7" Canvas.Top="35.4" Background="{Binding Indicator3, 
+          Converter={x:Static converters:StatusToBrushConverter.Singleton}}"/>
+      <ripple:RippleEffect 
+        Canvas.Left="2"
+        Canvas.Top="2"
         Padding="0"
-        BorderBrush="Transparent" 
-        Background="Transparent"
-        Command="{Binding SubmitButtonClicked}"
-        IsVisible="{Binding DoesShowSubmitButton}">
-        <Image Source="/Assets/submit.png" Width="53" Height="53"/>
-      </Button>
+        PressedAction="{Binding SubmitButtonClicked}"
+        IsVisible="{Binding DoesShowSubmitButton}"
+        Height="53" Width="53">
+        <ripple:RippleEffect.OpacityMask>
+          <RadialGradientBrush>
+            <RadialGradientBrush.GradientStops>
+              <GradientStop Offset="0" Color="Black" />
+              <GradientStop Offset="1" Color="Black"/>
+              <GradientStop Offset="1" Color="Transparent" />
+            </RadialGradientBrush.GradientStops>
+          </RadialGradientBrush>
+        </ripple:RippleEffect.OpacityMask>
+        <ripple:RippleEffect.Styles>
+          <Style Selector="Border:pointerover">
+            <Setter Property="Background" Value="#99f4f4f4"/>
+          </Style>
+        </ripple:RippleEffect.Styles>
+        <Border
+          Margin="0 0 0 0"
+          Background="#01f4f4f4">
+          <Image Source="/Assets/submit.png" Width="53" Height="53"/>
+        </Border>
+      </ripple:RippleEffect>
     </Canvas>
   </Grid>
 </UserControl>

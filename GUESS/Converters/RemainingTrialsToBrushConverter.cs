@@ -16,7 +16,7 @@ namespace GUESS.Converters
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var count = (int)value;
-			if (count <= 1)
+			if (count <= 2)
 			{
 				return new SolidColorBrush(Color.FromUInt32(0xfff26b6b));
 			}

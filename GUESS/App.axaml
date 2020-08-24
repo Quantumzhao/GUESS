@@ -1,56 +1,84 @@
 ﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GUESS"
+             xmlns:ripple="clr-namespace:Ripple;assembly=Ripple"
              x:Class="GUESS.App">
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-
+  
     <Application.Styles>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
-      <Style Selector="Ellipse.Red">
-        <Setter Property="Fill">
+      <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
+      <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
+      <StyleInclude Source="avares://Ripple/RippleEffect/RippleEffect.xaml" />
+      <Style Selector="Border.Red">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ffe6317f"/>
           </Setter.Value>
         </Setter>
       </Style>
-      <Style Selector="Ellipse.Yellow">
-        <Setter Property="Fill">
+      <Style Selector="Border.Yellow">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ffffdb27"/>
           </Setter.Value>
         </Setter>
       </Style>
-      <Style Selector="Ellipse.Blue">
-        <Setter Property="Fill">
+      <Style Selector="Border.Blue">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ff5959ce"/>
           </Setter.Value>
         </Setter>
       </Style>
-      <Style Selector="Ellipse.Green">
-        <Setter Property="Fill">
+      <Style Selector="Border.Green">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ff53d348"/>
           </Setter.Value>
         </Setter>
       </Style>
-      <Style Selector="Ellipse.Orange">
-        <Setter Property="Fill">
+      <Style Selector="Border.Orange">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ffef9029"/>
           </Setter.Value>
         </Setter>
       </Style>
-      <Style Selector="Ellipse.Purple">
-        <Setter Property="Fill">
+      <Style Selector="Border.Purple">
+        <Setter Property="Background">
           <Setter.Value>
             <SolidColorBrush Color="#ff7831aa"/>
           </Setter.Value>
         </Setter>
       </Style>
+      <Style Selector="Border.None">
+        <Setter Property="Background" Value="#fff4f4f4"/>
+      </Style>
+      <Style Selector="Border[Tag=MainSection]">
+        <Setter Property="BoxShadow" Value="0 5 30 0 #33000000"/>
+      </Style>
+      <Style Selector="TextBlock.Comment">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="#ff000000"/>
+      </Style>
+      <Style Selector="ripple|RippleEffect">
+        <Setter Property="RippleFill" Value="#fff0f0f0"/>
+        <Setter Property="RippleOpacity" Value="0.25"/>
+      </Style>
+      <Style Selector="Border.DockButton">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Background" Value="#ffffffff"/>
+        <!--<Setter Property="BoxShadow" Value="3 3 28 0 #66494949"/>-->
+      </Style>
+      <Style Selector="Border.ButtonBackground:pointerover">
+        <Setter Property="Border.Background" Value="#fff4f4f4"/>
+      </Style>
+      
     </Application.Styles>
 
   <Application.Resources>

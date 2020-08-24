@@ -42,7 +42,7 @@ namespace GUESS.Models
 			{
 				if (Gameboard.Current.Balls[i] == tempList[i])
 				{
-					Gameboard.Current.Correctness.Add(true);
+					Gameboard.Current.Correctness[i] = Status.Correct;
 					tempList[i] = Colors.None;
 					tempTrial[i] = Colors.None;
 				}
@@ -57,19 +57,19 @@ namespace GUESS.Models
 				var pairIndex = find(Gameboard.Current.Balls[i]);
 				if (pairIndex != -1)
 				{
-					Gameboard.Current.Correctness.Add(false);
+					Gameboard.Current.Correctness[i] = Status.HalfHalf;
 					tempList[pairIndex] = Colors.None;
 				}
 				else
 				{
-					Gameboard.Current.Correctness.Add(null);
+					Gameboard.Current.Correctness[i] = Status.Wrong;
 				}
 			}
 		}
 
 		public void Next()
 		{
-			if (Gameboard.Current?.Correctness.All(e => e ?? false) ?? false)
+			if (Gameboard.Current?.Correctness.All(e => e == Status.Correct) ?? false)
 			{
 				GameOver?.Invoke(true);
 			}
@@ -93,7 +93,7 @@ namespace GUESS.Models
 				Answer[i] = (Colors)_Random.Next(1, 6);
 			}
 
-			//Answer = new Colors[] { Colors.Green, Colors.Blue, Colors.Blue, Colors.Green };
+			Answer = new Colors[] { Colors.Green, Colors.Red, Colors.Blue, Colors.Green };
 		}
 
 		private static Random _Random = new Random();
@@ -105,7 +105,7 @@ namespace GUESS.Models
 	public class Trial
 	{
 		public Colors[] Balls { get; } = new Colors[GameManager.PEG_COUNTS];
-		public List<bool?> Correctness { get; } = new List<bool?>();
+		public Status[] Correctness { get; } = new Status[GameManager.PEG_COUNTS];
 		public void Fill(int index, Colors color)
 		{
 			Balls[index] = color;
@@ -121,5 +121,13 @@ namespace GUESS.Models
 		Green, 
 		Orange, 
 		Purple
+	}
+
+	public enum Status
+	{
+		None,
+		Correct,
+		HalfHalf,
+		Wrong
 	}
 }

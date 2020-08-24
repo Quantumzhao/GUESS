@@ -22,4 +22,7 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ripple\Ripple.csproj" />
+  </ItemGroup>
 </Project>

@@ -45,10 +45,10 @@ namespace GUESS.ViewModels
 		{
 			var vm = new TrialEntryViewModel(trial, index);
 			TrialEntryViewModels.Add(vm);
-			HighlightPosition = new Point(vm.Position.X - 17, vm.Position.Y - 17);
+			HighlightPosition = new Point(vm.Position.X, vm.Position.Y);
 			if (index >= 5)
 			{
-				GameboardHeight += 104;
+				GameboardHeight += 94;
 			}
 		}
 	}

@@ -1,26 +1,113 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+﻿<Window Name="Me" xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:GUESS.ViewModels;assembly=GUESS"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:GUESS.Views"
         xmlns:converters="clr-namespace:GUESS.Converters;assembly=GUESS"
+        xmlns:ripple="clr-namespace:Ripple;assembly=Ripple"
         mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
         x:Class="GUESS.Views.MainWindow"
         MinWidth="450" MinHeight="450"
         Width="450" Height="800"
         Icon="/Assets/avalonia-logo.ico"
         Title="GUESS"
-        HasSystemDecorations="True">
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="40"
+        ExtendClientAreaToDecorationsHint="True">
   
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
+  
   <Grid RowDefinitions="* 63">
-    <Border Grid.Row="0" VerticalAlignment="Stretch" BoxShadow="0 5 30 0 #33000000">
+    <Rectangle Grid.RowSpan="2" Opacity="0.8" ZIndex="2" IsVisible="{Binding DoesGameOverWindowOpen}">
+      <Rectangle.Fill>
+        <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
+          <GradientStop Offset="0.0" Color="#99000000" />
+          <GradientStop Offset="0.25" Color="#33000000" />
+          <GradientStop Offset="0.75" Color="#33000000" />
+          <GradientStop Offset="1.0" Color="#99000000" />
+        </LinearGradientBrush>
+      </Rectangle.Fill>
+    </Rectangle>
+    <!---->
+    <Border
+      Grid.RowSpan="2"
+      Background="White"
+      Width="{Binding ElementName=Me, Path=Width}"
+      MaxWidth="470"
+      Height="250"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      BoxShadow="0 0 90 10 #99353535"
+      ZIndex="2"
+      IsVisible="{Binding DoesGameOverWindowOpen}">
+      <Grid>
+        <TextBlock
+          FontFamily="Pier Sans"
+          FontSize="40"
+          FontWeight="Bold"
+          Margin="32 32 0 0"
+          DockPanel.Dock="Top"
+          HorizontalAlignment="Left"
+          Foreground="#ff353535"
+          Text="{Binding DoesWin, Converter={x:Static converters:BoolToPromptConverter.Singleton}, 
+          ConverterParameter=Header}"/>
+        <StackPanel 
+          HorizontalAlignment="Center" 
+          VerticalAlignment="Center" 
+          Orientation="Horizontal"
+          Margin="0 30 0 0">
+          <StackPanel.Styles>
+            <Style Selector="Border">
+              <Setter Property="Margin" Value="0, 0, 14, 17"/>
+              <Setter Property="Width" Value="40"/>
+              <Setter Property="Height" Value="40"/>
+              <Setter Property="CornerRadius" Value="20"/>
+              <Setter Property="BoxShadow" Value="3 3 28 0 #66494949"/>
+            </Style>
+          </StackPanel.Styles>
+          <Border Name="Peg0" Background="{Binding Answer[0],
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}}"/>
+          <Border Name="Peg1" Background="{Binding Answer[1],
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}}"/>
+          <Border Name="Peg2" Background="{Binding Answer[2],
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}}"/>
+          <Border Name="Peg3" Background="{Binding Answer[3],
+            Converter={x:Static converters:StdColorToBrushConverter.Singleton}}"/>
+        </StackPanel>
+        <ripple:RippleEffect Margin="0 0 24 24"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+          PressedAction="{Binding GameOverWindowButtonClicked}">
+          <Border 
+            Background="#ff5477f7"
+            CornerRadius="30">
+            <TextBlock
+              Margin="20 10 20 3"
+              FontFamily="Pier Sans"
+              FontSize="25"
+              Foreground="#eff4f4f4"
+              Text="{Binding DoesWin, Converter={x:Static converters:BoolToPromptConverter.Singleton}, 
+            ConverterParameter=Button}"/>
+          </Border>
+        </ripple:RippleEffect>
+      </Grid>
+    </Border>
+    <Border
+      Tag="MainSection"
+      Grid.Row="0" 
+      VerticalAlignment="Stretch">
       <Grid RowDefinitions="120 *" VerticalAlignment="Stretch">
-        <Border Grid.Row="0" Height="120" VerticalAlignment="Stretch" BoxShadow="0 5 30 0 #33000000" ZIndex="1">
+        <Border 
+          Tag="MainSection" 
+          Grid.Row="0" 
+          Height="120" 
+          VerticalAlignment="Stretch"
+          ZIndex="1">
           <DockPanel>
             <TextBlock
               Text="Guess"
@@ -38,19 +125,21 @@
               HorizontalAlignment="Right"
               Width="70"
               Height="63"
-              Margin="0 34.56 34 0">
+              Margin="0 34.56 34 0"
+              ToolTip.Tip="Drag the colored balls to desired slots">
               <Canvas.Styles>
-                <Style Selector="Ellipse">
+                <Style Selector="Border">
                   <Setter Property="Width" Value="20"/>
                   <Setter Property="Height" Value="20"/>
+                  <Setter Property="CornerRadius" Value="10"/>
                 </Style>
               </Canvas.Styles>
-              <Ellipse Classes="Red" Canvas.Left="13" Canvas.Top="0"/>
-              <Ellipse Classes="Yellow" Canvas.Left="37" Canvas.Top="0"/>
-              <Ellipse Classes="Blue" Canvas.Left="50" Canvas.Top="22"/>
-              <Ellipse Classes="Green" Canvas.Left="38" Canvas.Top="43"/>
-              <Ellipse Classes="Orange" Canvas.Left="13" Canvas.Top="43"/>
-              <Ellipse Classes="Purple" Canvas.Left="0" Canvas.Top="22"/>
+              <Border Name="Candidate0" Classes="Red" Canvas.Left="13" Canvas.Top="0"/>
+              <Border Name="Candidate1" Classes="Yellow" Canvas.Left="37" Canvas.Top="0"/>
+              <Border Name="Candidate2" Classes="Blue" Canvas.Left="50" Canvas.Top="22"/>
+              <Border Name="Candidate3" Classes="Green" Canvas.Left="38" Canvas.Top="43"/>
+              <Border Name="Candidate4" Classes="Orange" Canvas.Left="13" Canvas.Top="43"/>
+              <Border Name="Candidate5" Classes="Purple" Canvas.Left="0" Canvas.Top="22"/>
             </Canvas>
           </DockPanel>
         </Border>
@@ -62,36 +151,27 @@
           VerticalContentAlignment="Stretch"/>
       </Grid>
     </Border>
-    <!--
-    <Image 
-      Source="/Assets/info_bar.png"
-      Height="169"
-      Grid.Row="2" 
-      VerticalAlignment="Bottom"
-      HorizontalAlignment="Stretch"
-      Stretch="Fill"/>-->
     <DockPanel Height="63" Grid.Row="1" VerticalAlignment="Bottom">
-      <Button
+      <ripple:RippleEffect
         DockPanel.Dock="Left"
-        HorizontalAlignment="Center"
+        Margin="21 5 0 0"
         VerticalAlignment="Center"
-        Margin="21, 5, 0, 0"
-        Background="Transparent"
-        BorderBrush="Transparent"
-        Command="{Binding NewGame}">
-        <Path Data="M6.2,15V8.8H0V6.2h6.2V0h2.6v6.2H15v2.6H8.8V15H6.2z">
-          <Path.Fill>
-            <SolidColorBrush Color="#353535"/>
-          </Path.Fill>
-        </Path>
-      </Button>
+        PressedAction="{Binding CloseWindow}"
+        ToolTip.Tip="It's the hidden Close button">
+        <Border Classes="ButtonBackground DockButton">
+          <Path VerticalAlignment="Center" HorizontalAlignment="Center"
+            Data="M12.4,14.5L7.3,9.4l-5.1,5.1L0,12.4l5.1-5.1L0,2.2L2.2,0l5.1,5.1L12.4,0l2.2,2.2L9.4,
+                    7.3l5.1,5.1L12.4,14.5z"
+            Fill="#FFF74343"/>
+        </Border>
+      </ripple:RippleEffect>
       <TextBlock
         Text="{Binding TrialsRemainingCount}"
         DockPanel.Dock="Right"
         TextAlignment="Right"
         HorizontalAlignment="Right"
         VerticalAlignment="Center"
-        Margin="0 10 21 0"
+        Margin="0 20 21 0"
         FontFamily="Pier Sans"
         FontSize="25"
         FontWeight="Regular"
@@ -99,7 +179,7 @@
           converters:RemainingTrialsToBrushConverter.Singleton}}">
       </TextBlock>
       <TextBlock
-        Margin="0 5 0 0"
+        Margin="0 15 0 0"
         Text="Trials Remaining: "
         DockPanel.Dock="Right"
         TextAlignment="Right"
@@ -110,6 +190,25 @@
         FontWeight="Regular"
         Foreground="#353535">
       </TextBlock>
+      <ripple:RippleEffect
+        DockPanel.Dock="Right"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Center"
+        Margin="0, 2, 8, 0"
+        PressedAction="{Binding NewGame}">
+        <ToolTip.Tip>
+          <TextBlock Classes="Comment" Text="Gain extra trials by starting a new game"/>
+        </ToolTip.Tip>
+        <Border Classes="ButtonBackground DockButton">
+          <Path Data="M6.2,15V8.8H0V6.2h6.2V0h2.6v6.2H15v2.6H8.8V15H6.2z" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+            <Path.Fill>
+              <SolidColorBrush Color="#353535"/>
+            </Path.Fill>
+          </Path>
+        </Border>
+      </ripple:RippleEffect>
     </DockPanel>
   </Grid>
 </Window>

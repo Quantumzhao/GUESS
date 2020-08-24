@@ -1,7 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
+using Avalonia.Input;
+using GUESS.Misc;
 using GUESS.Models;
+using GUESS.Views;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -15,66 +17,58 @@ namespace GUESS.ViewModels
 		public TrialEntryViewModel(Trial trial, int index)
 		{
 			Trial = trial;
-			Position = new Point(42, 48 + (12 + 94) * index);
+			Position = new Point(42 - 17, 48 + 94 * index - 17);
 		}
 
+		private bool _DoesShowSubmitButton = true;
 		public Point Position { get; }
 		public Trial Trial { get; }
-		public List<bool?> Correctness => Trial.Correctness;
+		public TrialEntryView View { get; set; }
+		public Status[] Correctness => Trial.Correctness;
 
-		private bool _DoesShowSubmitButton = true;
 		public bool DoesShowSubmitButton
 		{
 			get => _DoesShowSubmitButton;
 			set => this.RaiseAndSetIfChanged(ref _DoesShowSubmitButton, value);
 		}
 
+		public Colors Peg0
+		{
+			get => Trial.Balls[0];
+			set => this.RaiseAndSetIfChanged(ref Trial.Balls[0], value);
+		}
 		public Colors Peg1
 		{
-			get
-			{
-				return Trial.Balls[0];
-			}
-
-			set => this.RaiseAndSetIfChanged(ref Trial.Balls[0], value);
+			get => Trial.Balls[1];
+			set => this.RaiseAndSetIfChanged(ref Trial.Balls[1], value);
 		}
 		public Colors Peg2
 		{
-			get
-			{
-				return Trial.Balls[1];
-			}
-
-			set => this.RaiseAndSetIfChanged(ref Trial.Balls[1], value);
+			get => Trial.Balls[2];
+			set => this.RaiseAndSetIfChanged(ref Trial.Balls[2], value);
 		}
 		public Colors Peg3
 		{
-			get
-			{
-				return Trial.Balls[2];
-			}
-
-			set => this.RaiseAndSetIfChanged(ref Trial.Balls[2], value);
-		}
-		public Colors Peg4
-		{
-			get
-			{
-				return Trial.Balls[3];
-			}
-
+			get => Trial.Balls[3];
 			set => this.RaiseAndSetIfChanged(ref Trial.Balls[3], value);
 		}
 
+		public Status Indicator0 => Correctness[0];
+		public Status Indicator1 => Correctness[1];
+		public Status Indicator2 => Correctness[2];
+		public Status Indicator3 => Correctness[3];
+
 		public void SubmitButtonClicked()
 		{
-			// test
-			Peg1 = Colors.Red;
-			Peg2 = Colors.Yellow;
-			Peg3 = Colors.Blue;
-			Peg4 = Colors.Green;
 			DoesShowSubmitButton = false;
 			GameManager.Singleton.SubmitCurrent();
+			for (int i = 0; i < GameManager.PEG_COUNTS; i++)
+			{
+				this.RaisePropertyChanged($"Indicator{i}");
+				var indicator = View.FindControl<Border>($"Indicator{i}");
+				indicator.Classes.Add((Correctness[i] == Status.Correct).ToString());
+			}
+
 			GameManager.Singleton.Next();
 		}
 	}
