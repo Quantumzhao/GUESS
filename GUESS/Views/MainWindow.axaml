@@ -13,10 +13,10 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="GUESS"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaTitleBarHeightHint="40"
-        ExtendClientAreaToDecorationsHint="True">
+        WindowStartupLocation="CenterScreen">
   
     <Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -48,8 +48,8 @@
       <Grid>
         <TextBlock
           FontFamily="Pier Sans"
-          FontSize="40"
           FontWeight="Bold"
+          FontSize="40"
           Margin="32 32 0 0"
           DockPanel.Dock="Top"
           HorizontalAlignment="Left"
@@ -166,15 +166,15 @@
         </Border>
       </ripple:RippleEffect>
       <TextBlock
+        FontFamily="Pier Sans"
+        FontWeight="Regular"
         Text="{Binding TrialsRemainingCount}"
         DockPanel.Dock="Right"
         TextAlignment="Right"
         HorizontalAlignment="Right"
         VerticalAlignment="Center"
         Margin="0 20 21 0"
-        FontFamily="Pier Sans"
         FontSize="25"
-        FontWeight="Regular"
         Foreground="{Binding TrialsRemainingCount, Converter={x:Static 
           converters:RemainingTrialsToBrushConverter.Singleton}}">
       </TextBlock>
@@ -186,8 +186,8 @@
         HorizontalAlignment="Right"
         VerticalAlignment="Center"
         FontFamily="Pier Sans"
-        FontSize="25"
         FontWeight="Regular"
+        FontSize="25"
         Foreground="#353535">
       </TextBlock>
       <ripple:RippleEffect

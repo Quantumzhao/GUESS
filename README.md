@@ -2,11 +2,7 @@
 
 It is a reproduction of the simple game *Guess*, being developed using Avalonia UI. Which also means it's cross-platform. 
 
-## Artistic Illustration
-
-![GUESS_Design](GUESS_Design.png)
-
-> Note this is only a concept, which might differ from the final outcome
+## ## Screenshot<img src="GUESS/Assets/screenshot.jpg" alt="screenshot" style="zoom:50%;" />
 
 ## Game Rules
 

@@ -59,11 +59,6 @@
       <Style Selector="Border[Tag=MainSection]">
         <Setter Property="BoxShadow" Value="0 5 30 0 #33000000"/>
       </Style>
-      <Style Selector="TextBlock.Comment">
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="Foreground" Value="#ff000000"/>
-      </Style>
       <Style Selector="ripple|RippleEffect">
         <Setter Property="RippleFill" Value="#fff0f0f0"/>
         <Setter Property="RippleOpacity" Value="0.25"/>
@@ -82,5 +77,6 @@
     </Application.Styles>
 
   <Application.Resources>
+    <FontFamily x:Key="PierSans">resm:GUESS.Assets.Fonts.PIER-REGULAR.OTF</FontFamily>
   </Application.Resources>
 </Application>
