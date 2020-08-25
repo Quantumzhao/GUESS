@@ -16,9 +16,9 @@
     <None Remove="Assets\peg.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.0-preview3" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview3" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview3" />
+    <PackageReference Include="Avalonia" Version="0.10.0-preview2" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-preview2" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-preview2" />
     <PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
   </ItemGroup>
   <ItemGroup>
