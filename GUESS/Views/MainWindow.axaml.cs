@@ -2,8 +2,12 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using GUESS.Misc;
 using GUESS.ViewModels;
+using System;
 
 namespace GUESS.Views
 {

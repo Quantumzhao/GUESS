@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
@@ -24,8 +25,8 @@
     <ProjectReference Include="..\Ripple\Ripple.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\Fonts\PIER-BOLD.OTF" />
-    <EmbeddedResource Include="Assets\Fonts\PIER-REGULAR.OTF" />
+    <EmbeddedResource Include="Assets\Fonts\PIER-BOLD.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\PIER-REGULAR.ttf" />
   </ItemGroup>
   <PropertyGroup>
     <CFBundleName>Guess</CFBundleName>

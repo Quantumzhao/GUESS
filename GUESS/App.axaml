@@ -73,10 +73,9 @@
       <Style Selector="Border.ButtonBackground:pointerover">
         <Setter Property="Border.Background" Value="#fff4f4f4"/>
       </Style>
-      
     </Application.Styles>
-
   <Application.Resources>
-    <FontFamily x:Key="PierSans">resm:GUESS.Assets.Fonts.PIER-REGULAR.OTF</FontFamily>
+    <FontFamily x:Key="PierSans">resm:GUESS.Assets.Fonts.PIER-REGULAR.ttf?assembly=GUESS#Pier Sans</FontFamily>
+    <FontFamily x:Key="PierSansBold">resm:GUESS.Assets.Fonts.PIER-BOLD.ttf?assembly=GUESS#Pier Sans</FontFamily>
   </Application.Resources>
 </Application>
